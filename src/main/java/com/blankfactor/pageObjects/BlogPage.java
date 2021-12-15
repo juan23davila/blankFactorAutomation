@@ -58,9 +58,11 @@ public class BlogPage {
     public void PrintListOfTitlesWithRelatedLinks() {
         List<WebElement> articles = driver.findElements(By.cssSelector("div.posts-list article"));
         String articleTittle;
+        String articleLink;
         for (int i = 0; i < articles.size(); i++){
             articleTittle = articles.get(i).findElement(By.cssSelector("h2 a")).getText();
-            System.out.println( (i+1)+") "+articleTittle );
+            articleLink = articles.get(i).findElement(By.cssSelector("h2 a")).getAttribute("href");
+            System.out.println( (i+1)+") "+articleTittle+" - Related link: "+articleLink );
         }
     }
 }
