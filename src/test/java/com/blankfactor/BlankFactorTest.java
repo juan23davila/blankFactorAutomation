@@ -1,14 +1,14 @@
 package com.blankfactor;
 
+import com.blankfactor.pageObjects.ArticlePage;
 import com.blankfactor.pageObjects.BlogPage;
 import com.blankfactor.pageObjects.HomePage;
 import com.blankfactor.pageObjects.InsightsPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertTrue;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for blankfactor.com page.
@@ -35,7 +35,6 @@ public class BlankFactorTest
 
     @Test
     public void selectArticle() {
-
         BlogPage blogPage = new BlogPage(driver);
         int totalArticles = blogPage.getQuantityOfAllArticles();
         int quantityArticles = blogPage.getQuantityOfArticlesDisplayed();
@@ -50,5 +49,26 @@ public class BlankFactorTest
                 blogPage.clickLoadMore(quantityArticles);
             }
         }
+    }
+
+    @Test
+    public void validateIsOnCorrectPage(){
+        String linkOfArticle = "https://blankfactor.com/insights/blog/fintech-in-latin-america/";
+        String textInTittle = "Fintech in Latin America";
+        ArticlePage articlePage = new ArticlePage(driver);
+        //testNG assertion
+        Assert.assertEquals(articlePage.getLinkOfArticle(), linkOfArticle);
+        //jUnit assertion
+        org.junit.Assert.assertTrue("Tittle is the expected", articlePage.getTittleText().contains(textInTittle));
+    }
+
+    @Test
+    public void subscribeToTheNewsletter(){
+        System.out.println("Here I will subscribe");
+    }
+
+    @Test
+    public void PrintListOfTitlesWithRelatedLinks(){
+        System.out.println("Go back to the Blog section and print a list of the all posts titles with related links.");
     }
 }

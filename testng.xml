@@ -9,6 +9,9 @@
                     <include name="openPageTest"/>
                     <include name="goBlogSectionTest"/>
                     <include name="selectArticle"/>
+                    <include name="validateIsOnCorrectPage"/>
+                    <include name="subscribeToTheNewsletter"/>
+                    <include name="PrintListOfTitlesWithRelatedLinks"/>
                 </methods>
             </class>
         </classes>
