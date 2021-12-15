@@ -8,6 +8,7 @@
                 <methods>
                     <include name="openPageTest"/>
                     <include name="goBlogSectionTest"/>
+                    <include name="selectArticle"/>
                 </methods>
             </class>
         </classes>
