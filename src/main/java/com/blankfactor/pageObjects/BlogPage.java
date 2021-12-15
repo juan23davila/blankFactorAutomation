@@ -2,14 +2,13 @@ package com.blankfactor.pageObjects;
 
 import com.blankfactor.GenericWebDriver.BrowserEvents;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.TreeMap;
+import java.util.List;
 
 public class BlogPage {
     WebDriver driver;
@@ -54,5 +53,14 @@ public class BlogPage {
         WebElement articleToOpen = driver.findElement(By.linkText(articleToSearch));
         browserEvents.scrollUntilWebElement(driver, articleToOpen);
         articleToOpen.click();
+    }
+
+    public void PrintListOfTitlesWithRelatedLinks() {
+        List<WebElement> articles = driver.findElements(By.cssSelector("div.posts-list article"));
+        String articleTittle;
+        for (int i = 0; i < articles.size(); i++){
+            articleTittle = articles.get(i).findElement(By.cssSelector("h2 a")).getText();
+            System.out.println( (i+1)+") "+articleTittle );
+        }
     }
 }

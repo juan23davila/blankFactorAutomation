@@ -64,11 +64,24 @@ public class BlankFactorTest
 
     @Test
     public void subscribeToTheNewsletter(){
-        System.out.println("Here I will subscribe");
+        ArticlePage articlePage = new ArticlePage(driver);
+        String email = "juan.davila@gmail.com";
+        String responseOfSubscription = articlePage.subscribeToTheNewsletter(email);
+        Assert.assertEquals(responseOfSubscription, email+" is already a list member.");
     }
 
     @Test
     public void PrintListOfTitlesWithRelatedLinks(){
-        System.out.println("Go back to the Blog section and print a list of the all posts titles with related links.");
+        driver.navigate().back();
+        BlogPage blogPage = new BlogPage(driver);
+        int totalArticles = blogPage.getQuantityOfAllArticles();
+        int quantityArticles = blogPage.getQuantityOfArticlesDisplayed();
+
+        while (quantityArticles < totalArticles) {
+            quantityArticles += 3;
+            blogPage.clickLoadMore(quantityArticles);
+        }
+
+        blogPage.PrintListOfTitlesWithRelatedLinks();
     }
 }
