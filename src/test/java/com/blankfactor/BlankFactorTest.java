@@ -45,8 +45,8 @@ public class BlankFactorTest
                 blogPage.openArticle(articleToSearch);
                 break;
             }else {
+                blogPage.clickLoadMore(quantityArticles, totalArticles);
                 quantityArticles += 3;
-                blogPage.clickLoadMore(quantityArticles);
             }
         }
     }
@@ -65,9 +65,9 @@ public class BlankFactorTest
     @Test
     public void subscribeToTheNewsletter(){
         ArticlePage articlePage = new ArticlePage(driver);
-        String email = "juan.davila@gmail.com";
+        String email = "jua27davila@gmail.com";
         String responseOfSubscription = articlePage.subscribeToTheNewsletter(email);
-        Assert.assertEquals(responseOfSubscription, email+" is already a list member.");
+        Assert.assertEquals(responseOfSubscription, "Thank you for subscribing! Stay tuned.");
     }
 
     @Test
@@ -77,9 +77,9 @@ public class BlankFactorTest
         int totalArticles = blogPage.getQuantityOfAllArticles();
         int quantityArticles = blogPage.getQuantityOfArticlesDisplayed();
 
-        while (quantityArticles < totalArticles) {
+        while (quantityArticles < (totalArticles - 2) ) {
+            blogPage.clickLoadMore(quantityArticles, totalArticles);
             quantityArticles += 3;
-            blogPage.clickLoadMore(quantityArticles);
         }
 
         blogPage.PrintListOfTitlesWithRelatedLinks();

@@ -36,13 +36,13 @@ public class BlogPage {
         return driver.findElements(By.cssSelector("div.posts-list article")).size();
     }
 
-    public void clickLoadMore(int quantityArts) {
+    public void clickLoadMore(int quantityArticles, int totalArticles) {
         By loadMoreLocator = By.xpath("//span[text()='Load more']/parent::button");
         WebElement loadMoreBtn = driver.findElement(loadMoreLocator);
         browserEvents.scrollUntilWebElement(driver, loadMoreBtn);
         wait.until(ExpectedConditions.elementToBeClickable(loadMoreLocator));
         loadMoreBtn.click();
-        wait.until(ExpectedConditions.textToBePresentInElement(quantityResults, "Showing 1-"+quantityArts+" (19) results"));
+        wait.until(ExpectedConditions.textToBePresentInElement(quantityResults, "Showing 1-"+ (quantityArticles+3) +" ("+totalArticles+") results"));
     }
 
     public boolean isArticleVisible(String articleToSearch){

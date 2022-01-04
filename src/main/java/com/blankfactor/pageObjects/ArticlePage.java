@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.regex.Pattern;
 
 public class ArticlePage {
 
@@ -30,7 +31,8 @@ public class ArticlePage {
         driver.findElement(By.id("form-newsletter-submit-btn")).click();
         By resultSubscriptionLocator = By.className("mc4wp-response");
 
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(driver.findElement(resultSubscriptionLocator))));
+        Pattern p = Pattern.compile(".");
+        wait.until(ExpectedConditions.textMatches(resultSubscriptionLocator, p));
         String subsResponse = driver.findElement(resultSubscriptionLocator).getText();
         return subsResponse;
     }

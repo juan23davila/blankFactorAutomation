@@ -21,8 +21,9 @@ public class InsightsPage {
     }
 
     public void selectBlogBtn() {
-        By goToBlogLocator = By.xpath("//a[text()=' Go to blog ']");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(goToBlogLocator));
+        By goToBlogLocator = By.xpath("//a[contains(text(),'Go to blog')]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@aria-label='Next slide']")));
+
         WebElement blogBtn = driver.findElement(goToBlogLocator);
         browserEvents.scrollUntilWebElement(driver, blogBtn);
         blogBtn.click();
